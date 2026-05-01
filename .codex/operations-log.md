@@ -148,3 +148,99 @@
 
 - 检查了 `paper_sensitivity_analysis.py`、`paper-advanced-model-mainline.md`、`paper-organization-draft.md`、`independent_advanced_staff_scheduling.py`。
 - 结论：现有仓库没有可直接复用的 `UDR`、随机缺勤 Monte Carlo 或“原方案在扰动下的缺口指标”输出，因此本轮扩展属于对现有分析链的必要补全，而非重复实现同类功能。
+
+## 编码前检查 - 论文V3缺口补齐
+
+时间：2026-05-01 17:50:00
+
+□ 已查阅上下文摘要文件：`D:\dongbei3sheng\.codex\context-summary-论文V3缺口补齐.md`
+□ 将使用以下可复用组件：
+
+- `D:\dongbei3sheng\large_expo_staff_scheduling_solver.py` - 问题一聚合 IP、问题二/三基础覆盖模型
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py` - 问题一列生成复核、问题二最大流、问题三 ALNS 验证
+- `D:\dongbei3sheng\paper_mainline_visualizations.py` - 根目录主线图脚本
+- `D:\dongbei3sheng\.codex\paper_sensitivity_analysis.py` - `UDR` 与扰动场景结果来源
+- `D:\dongbei3sheng\q1_video_discrepancy_audit.md` - 问题一 `411.375 -> 415 -> 417` 审计口径
+
+□ 将遵循命名约定：Python 使用 `snake_case`；图文件使用 `fig编号_主题.png`；V3 相关文稿继续放在项目本地 `.codex\`
+□ 将遵循代码风格：沿用现有 `matplotlib + seaborn + 过程式函数` 绘图结构，文稿采用学术论文风格中文表述
+□ 确认不重复造轮子，证明：已检查 `paper_mainline_visualizations.py`、`.codex\paper_sensitivity_analysis.py`、`batch1_visualizations.py`、`batch2_visualizations.py`、`.codex\academic_visualizations\generate_academic_visualizations.py`，确认缺失点主要是 V3 证据编排层，而非基础算法本体
+
+## 决策记录 - 论文V3缺口补齐
+
+时间：2026-05-01 17:52:00
+
+1. 本轮不重写求解器，优先复用现有基础模型、独立高级验证链和敏感性脚本。
+2. 问题一论文口径改为“聚合 IP 主求解 + 列生成复核与扩展框架”，避免与用户最新修正冲突。
+3. 主线图改造目标不是增加花哨图，而是让仓库图号和用户当前 V3 图表目录一致。
+4. 待命池建议必须降强度，只能写成“15–20 人初始管理方案，后续结合历史缺勤率或分位数仿真校准”。
+
+## 编码中监控 - 论文V3缺口补齐
+
+时间：2026-05-01 18:18:00
+
+□ 是否使用了摘要中列出的可复用组件？
+✅ 是：已复用 `read_demand`、`build_shift_pairs`、`advanced_summary.json`、`q1_video_discrepancy_audit.json`、`.codex\paper-sensitivity-results.json`、`independent_advanced_summary.json`
+
+□ 命名是否符合项目约定？
+✅ 是：主线图输出统一为 `fig01` 至 `fig11`；新增文稿和报告均位于 `.codex\`
+
+□ 代码风格是否一致？
+✅ 是：图脚本沿用 `matplotlib + seaborn + 过程式函数` 结构，文稿与报告采用学术化中文表达
+
+## 编码后声明 - 论文V3缺口补齐
+
+时间：2026-05-01 18:20:00
+
+### 1. 复用了以下既有组件
+
+- `D:\dongbei3sheng\large_expo_staff_scheduling_solver.py`：用于需求读取、模板生成和问题三 13 类时间模板示意。
+- `D:\dongbei3sheng\advanced_summary.json`：用于问题二每日出勤图与问题三结果摘要。
+- `D:\dongbei3sheng\q1_video_discrepancy_audit.json`：用于问题一下界闭合图和逐组对比图。
+- `D:\dongbei3sheng\.codex\paper-sensitivity-results.json`：用于图11 的 `UDR` 场景数据。
+
+### 2. 遵循了以下项目约定
+
+- 命名约定：Python 使用 `snake_case`，图文件采用 `fig编号_主题.png`
+- 文件组织：主线图仍输出到 `D:\dongbei3sheng\visualizations\mainline`，论文底稿与验证文档放在项目本地 `.codex\`
+- 代码风格：不重建并行模型，只在既有求解链之上补齐 V3 证据资产
+
+### 3. 对比了以下相似实现
+
+- `paper_mainline_visualizations.py`：在原有 10 图主线基础上补成 11 图 V3 结构
+- `.codex\paper_sensitivity_analysis.py`：不重写扰动求解，只复用其结果做主线 `UDR` 图
+- `.codex\academic_visualizations\generate_academic_visualizations.py`：参考其敏感性表达方式，但未直接搬运其图号体系
+
+### 4. 未重复造轮子的证明
+
+- 已检查 `batch1_visualizations.py`、`batch2_visualizations.py`、`paper_mainline_visualizations.py`、`.codex\academic_visualizations\generate_academic_visualizations.py`
+- 结论：本轮新增的是 V3 缺失的主线图、文稿同步和验证约束，不是对已有算法的重复实现
+
+## 编码前检查 - 旧版资产清理与GitHub同步
+
+时间：2026-05-01 19:05:00
+
+□ 已查阅上下文摘要文件：`D:\dongbei3sheng\.codex\context-summary-论文V3缺口补齐.md`
+□ 将使用以下可复用组件：
+
+- `D:\dongbei3sheng\.codex\paper-v3-gap-report.md` - 明确区分 V3 保留资产与被替代资产
+- `D:\dongbei3sheng\.codex\paper-figure-plan.md` - 判断哪些图保留为主文或附录，哪些旧图删除
+- `D:\dongbei3sheng\.codex\paper-advanced-model-mainline.md` - 确认当前保留的论文主线口径
+- `D:\dongbei3sheng\.codex\verify_paper_mainline.py` - 清理后的本地一致性验证入口
+
+□ 将遵循命名约定：不新建平行资源目录；保留当前 V3 命名体系 `fig01` 至 `fig11`
+□ 将遵循代码风格：本轮不改求解器，只做资产治理、留痕和验证
+□ 确认不重复造轮子，证明：旧版 batch 图脚本和旧图已被 V3 主线图与 `.codex` 中的 V3 文稿完全替代
+
+## 决策记录 - 旧版资产清理与GitHub同步
+
+时间：2026-05-01 19:08:00
+
+1. 删除根目录旧版可视化脚本：`batch1_visualizations.py`、`batch1_supplement.py`、`batch2_visualizations.py`。
+2. 删除被 V3 替代的旧图：
+   - 根目录旧主线图：`visualizations/fig1_lb_audit_waterfall.png`、`fig2_lb_vs_feasible_dumbbell.png`、`fig3_q1_schedule_heatmap.png`、`fig5_daily_bottleneck_area.png`、`fig6_constraint_tightness.png`
+   - mainline 过渡图号：`fig06_q2_daily_staffing.png`、`fig07_q3_daily_staffing.png`、`fig08_q3_cross_group_usage.png`、`fig09_representative_coverage.png`
+3. 保留附录图：`fig5_alns_convergence.png`、`fig7_operator_evolution.png`、`fig8_workload_raincloud.png`、`fig9_shift_transition.png`、`fig10_alns_phase_space.png`
+4. 本地残留说明：
+   - `D:\dongbei3sheng\.codex\gemini-core-files-manifest.md` 受 ACL 限制，未能在当前权限下删除
+   - `D:\dongbei3sheng\下面给出一版重新_2026-05-01-17-12-48.docx` 被 Word 占用，未纳入 Git，不影响 GitHub 同步
