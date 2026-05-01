@@ -1,0 +1,67 @@
+{
+  "数据来源": "D:\\dongbei3sheng\\附件1.xlsx",
+  "问题三理论下界": 400,
+  "问题三人数": 400,
+  "问题三单日最少出勤": [
+    208,
+    346,
+    306,
+    329,
+    347,
+    326,
+    361,
+    348,
+    316,
+    311
+  ],
+  "初始指标": {
+    "deficit": 0.0,
+    "max_deficit": 0.0,
+    "surplus": 7918.0,
+    "max_surplus": 53.0,
+    "surplus_square": 151160.0,
+    "worker_day_deviation": 0.0,
+    "max_worker_days": 8.0,
+    "min_worker_days": 8.0,
+    "day_worker_std": 40.47221268969612,
+    "total_assignments": 3200.0
+  },
+  "算子消融输出": "D:\\dongbei3sheng\\.codex\\q3_operator_ablation.csv",
+  "多随机种子输出": "D:\\dongbei3sheng\\.codex\\q3_seed_stability.csv",
+  "最小费用工作日映射烟测": {
+    "worker_count": 5,
+    "daily_counts": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "worker_day_sums": [
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "day_worker_sums": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "passed": true
+  },
+  "敏感性论文表": "D:\\dongbei3sheng\\.codex\\sensitivity-paper-table.md"
+}

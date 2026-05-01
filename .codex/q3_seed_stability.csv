@@ -1,0 +1,4 @@
+﻿场景,seed,iterations,best_score,deficit,surplus,max_surplus,surplus_square,day_worker_std,elapsed_seconds,destroy_operators,repair_operators
+多随机种子稳定性,20260429,40,8228.504460524407,0.0,7918.0,53.0,149748.0,40.846052440841824,12.25146820000009,"random_assignments,whole_workers,whole_days,high_surplus","greedy_deficit,regret,balanced_day"
+多随机种子稳定性,20260430,40,8225.590779746337,0.0,7918.0,53.0,148290.0,41.07797463361601,13.576379300000553,"random_assignments,whole_workers,whole_days,high_surplus","greedy_deficit,regret,balanced_day"
+多随机种子稳定性,20260431,40,8230.748722126898,0.0,7918.0,53.0,150872.0,40.47221268969612,10.467646599998261,"random_assignments,whole_workers,whole_days,high_surplus","greedy_deficit,regret,balanced_day"

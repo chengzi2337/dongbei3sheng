@@ -1,0 +1,65 @@
+[
+  {
+    "stem": "fig01_model_framework",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig01_model_framework.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig01_model_framework.svg",
+    "title": "独立高级模型求解链路与论文证据闭环",
+    "chapter": "论文总主线"
+  },
+  {
+    "stem": "fig02_optimality_evidence",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig02_optimality_evidence.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig02_optimality_evidence.svg",
+    "title": "三问招聘人数与下界/恢复证据对比",
+    "chapter": "结果总览"
+  },
+  {
+    "stem": "fig03_q1_column_generation",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig03_q1_column_generation.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig03_q1_column_generation.svg",
+    "title": "问题一列生成规模与整数恢复结果",
+    "chapter": "问题一"
+  },
+  {
+    "stem": "fig04_daily_attendance",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig04_daily_attendance.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig04_daily_attendance.svg",
+    "title": "问题二与问题三每日出勤结构对比",
+    "chapter": "问题二与问题三"
+  },
+  {
+    "stem": "fig05_q3_coverage_heatmap",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig05_q3_coverage_heatmap.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig05_q3_coverage_heatmap.svg",
+    "title": "问题三覆盖冗余热力图",
+    "chapter": "问题三"
+  },
+  {
+    "stem": "fig06_worker_schedule_matrix",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig06_worker_schedule_matrix.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig06_worker_schedule_matrix.svg",
+    "title": "问题三员工工作日矩阵示例",
+    "chapter": "问题三附录"
+  },
+  {
+    "stem": "fig07_alns_convergence",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig07_alns_convergence.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig07_alns_convergence.svg",
+    "title": "问题三ALNS相对最优差值轨迹与算子权重",
+    "chapter": "问题三"
+  },
+  {
+    "stem": "fig08_sensitivity_analysis",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig08_sensitivity_analysis.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig08_sensitivity_analysis.svg",
+    "title": "三问关键参数敏感性分析",
+    "chapter": "敏感性分析"
+  },
+  {
+    "stem": "fig09_improvement_gradient",
+    "png": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig09_improvement_gradient.png",
+    "svg": "D:\\dongbei3sheng\\.codex\\academic_visualizations\\fig09_improvement_gradient.svg",
+    "title": "流动规则放宽带来的边际人力节约",
+    "chapter": "结果讨论"
+  }
+]

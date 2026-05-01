@@ -1,0 +1,2 @@
+﻿iteration,current_score,best_score,candidate_score,temperature,accepted,removed,destroy,repair,best_deficit,best_surplus,best_max_surplus,best_surplus_square
+1,8231.324722126898,8231.324722126898,8008236.524450243,1190.4,0,41,random_assignments,regret,0.0,7918.0,53.0,151160.0

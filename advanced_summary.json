@@ -1,0 +1,232 @@
+{
+  "summary": [
+    {
+      "问题": "问题1",
+      "高级验证方法": "列生成主问题LP + 定价子问题 + 整数主问题",
+      "理论下界": "",
+      "高级方法人数": 417,
+      "已有结果人数": 417,
+      "是否一致": true
+    },
+    {
+      "问题": "问题2",
+      "高级验证方法": "理论下界 + 最大流工作日分配",
+      "理论下界": 406,
+      "高级方法人数": 406,
+      "已有结果人数": 406,
+      "是否一致": true
+    },
+    {
+      "问题": "问题3",
+      "高级验证方法": "理论下界 + 最大流初始化 + ALNS联合搜索",
+      "理论下界": 400,
+      "高级方法人数": 400,
+      "已有结果人数": 400,
+      "是否一致": true
+    }
+  ],
+  "q2_day_minima": [
+    214,
+    349,
+    314,
+    333,
+    349,
+    331,
+    363,
+    350,
+    325,
+    319
+  ],
+  "q1_column_generation": [
+    {
+      "group_index": 1,
+      "exact_workers": 39,
+      "columns": 474,
+      "generated_columns": 24,
+      "iterations": 4,
+      "lp_objective": 39.0,
+      "lp_slack": 0.0,
+      "integer_workers": 39,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 2,
+      "exact_workers": 39,
+      "columns": 514,
+      "generated_columns": 64,
+      "iterations": 9,
+      "lp_objective": 38.5,
+      "lp_slack": 0.0,
+      "integer_workers": 39,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 3,
+      "exact_workers": 43,
+      "columns": 522,
+      "generated_columns": 72,
+      "iterations": 10,
+      "lp_objective": 42.37500000000001,
+      "lp_slack": 0.0,
+      "integer_workers": 43,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 4,
+      "exact_workers": 41,
+      "columns": 546,
+      "generated_columns": 96,
+      "iterations": 13,
+      "lp_objective": 40.999999999999986,
+      "lp_slack": 0.0,
+      "integer_workers": 41,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 5,
+      "exact_workers": 44,
+      "columns": 514,
+      "generated_columns": 64,
+      "iterations": 9,
+      "lp_objective": 42.87500000000001,
+      "lp_slack": 0.0,
+      "integer_workers": 44,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 6,
+      "exact_workers": 39,
+      "columns": 554,
+      "generated_columns": 104,
+      "iterations": 14,
+      "lp_objective": 38.18750000000001,
+      "lp_slack": 0.0,
+      "integer_workers": 39,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 7,
+      "exact_workers": 42,
+      "columns": 482,
+      "generated_columns": 32,
+      "iterations": 5,
+      "lp_objective": 41.5,
+      "lp_slack": 0.0,
+      "integer_workers": 42,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 8,
+      "exact_workers": 42,
+      "columns": 538,
+      "generated_columns": 88,
+      "iterations": 12,
+      "lp_objective": 41.499999999999986,
+      "lp_slack": 0.0,
+      "integer_workers": 42,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 9,
+      "exact_workers": 43,
+      "columns": 530,
+      "generated_columns": 80,
+      "iterations": 11,
+      "lp_objective": 41.93750000000001,
+      "lp_slack": 0.0,
+      "integer_workers": 43,
+      "integer_slack": 0.0
+    },
+    {
+      "group_index": 10,
+      "exact_workers": 45,
+      "columns": 466,
+      "generated_columns": 16,
+      "iterations": 3,
+      "lp_objective": 44.5,
+      "lp_slack": 0.0,
+      "integer_workers": 45,
+      "integer_slack": 0.0
+    }
+  ],
+  "q2_daily_counts": [
+    215,
+    349,
+    314,
+    333,
+    349,
+    331,
+    363,
+    350,
+    325,
+    319
+  ],
+  "q3_day_minima": [
+    208,
+    346,
+    306,
+    329,
+    347,
+    326,
+    361,
+    348,
+    316,
+    311
+  ],
+  "q3_daily_counts_initial": [
+    210,
+    346,
+    306,
+    329,
+    347,
+    326,
+    361,
+    348,
+    316,
+    311
+  ],
+  "q3_daily_counts_alns": [
+    210,
+    346,
+    306,
+    329,
+    347,
+    326,
+    361,
+    348,
+    316,
+    311
+  ],
+  "q3_initial_metrics": {
+    "deficit": 0.0,
+    "max_deficit": 0.0,
+    "surplus": 7918.0,
+    "max_surplus": 53.0,
+    "worker_day_deviation": 0.0,
+    "max_worker_days": 8.0,
+    "min_worker_days": 8.0,
+    "day_worker_std": 40.47221268969612,
+    "total_assignments": 3200.0
+  },
+  "q3_final_metrics": {
+    "deficit": 0.0,
+    "max_deficit": 0.0,
+    "surplus": 7918.0,
+    "max_surplus": 53.0,
+    "worker_day_deviation": 0.0,
+    "max_worker_days": 8.0,
+    "min_worker_days": 8.0,
+    "day_worker_std": 40.47221268969612,
+    "total_assignments": 3200.0
+  },
+  "q3_operator_weights": {
+    "destroy_random_assignments": 0.10032121558220122,
+    "destroy_whole_workers": 0.10198701874574109,
+    "destroy_whole_days": 0.10395818427990867,
+    "destroy_high_surplus": 0.1470202330451667,
+    "repair_greedy_deficit": 0.12524015236684233,
+    "repair_regret": 0.1014310372867054,
+    "repair_balanced_day": 0.10090396048764451
+  },
+  "q3_elapsed_seconds": 44.45646129999977
+}
