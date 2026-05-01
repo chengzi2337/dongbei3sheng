@@ -244,3 +244,97 @@
 4. 本地残留说明：
    - `D:\dongbei3sheng\.codex\gemini-core-files-manifest.md` 受 ACL 限制，未能在当前权限下删除
    - `D:\dongbei3sheng\下面给出一版重新_2026-05-01-17-12-48.docx` 被 Word 占用，未纳入 Git，不影响 GitHub 同步
+## 编码前检查 - 增强图布局修复
+
+时间：2026-05-01 19:34:18
+
+□ 已查阅上下文摘要文件：`D:\dongbei3sheng\.codex\context-summary-增强图布局修复.md`
+□ 将使用以下可复用组件：
+- `D:\dongbei3sheng\enhanced_visualizations.py::save` - 统一导出入口，用于局部控制 `bbox_inches`
+- `D:\dongbei3sheng\enhanced_visualizations.py::spine_clean` - 统一坐标轴边框样式
+- `D:\dongbei3sheng\paper_mainline_visualizations.py` - 作为更保守布局的参考实现
+□ 将遵循命名约定：Python 使用 `snake_case`；输出文件继续沿用 `fig编号_主题.png`
+□ 将遵循代码风格：保持一图一函数的过程式绘图结构，不新增独立脚本，不手工改 PNG
+□ 确认不重复造轮子，证明：已检查 `enhanced_visualizations.py`、`paper_mainline_visualizations.py` 以及现有增强版输出目录，确认问题属于现有布局实现缺陷，应在统一脚本内修复
+
+## 决策记录 - 增强图布局修复
+
+时间：2026-05-01 19:34:18
+
+1. 本轮只修明确存在重叠的 `fig03`、`fig04`、`fig14`，其余图片先保持不动，避免过度修改。
+2. 根因优先级排序为：局部元素布局失衡 > 全局 `bbox=tight` 对复杂图的放大效应 > 画布尺寸不足。
+3. 导出函数将改为支持按图覆盖 `bbox_inches`，从而对复杂图关闭紧边界裁切，对普通图保持原有输出风格。
+## 编码中监控 - 增强图布局修复
+
+时间：2026-05-01 19:46:16
+
+□ 是否使用了摘要中列出的可复用组件？
+✅ 是：沿用 `save()` 统一导出入口，并继续使用 `spine_clean()`、既有色板 `C`、既有一图一函数结构
+
+□ 命名是否符合项目约定？
+✅ 是：未改动图片命名规则；新增参数名使用 `bbox_inches`、`pad_inches` 等 Matplotlib 既有术语
+
+□ 代码风格是否一致？
+✅ 是：仍然在 `enhanced_visualizations.py` 内做局部函数修复，没有拆出新模块，也没有手工改图
+
+## 编码后声明 - 增强图布局修复
+
+时间：2026-05-01 19:46:16
+
+### 1. 复用了以下既有组件
+
+- `D:\dongbei3sheng\enhanced_visualizations.py::save`：扩展为支持局部覆盖 `bbox_inches`，继续作为统一导出入口
+- `D:\dongbei3sheng\enhanced_visualizations.py::spine_clean`：维持现有坐标轴清理风格
+- `D:\dongbei3sheng\paper_mainline_visualizations.py`：作为保守布局的对照参考
+
+### 2. 遵循了以下项目约定
+
+- 命名约定：输出文件仍为 `fig03_model_progression.png`、`fig04_q1_waterfall.png`、`fig14_demand_3d_surface.png`
+- 代码风格：保持过程式绘图函数组织，不新增旁路脚本，不在 PNG 上做手工修补
+- 文件组织：所有留痕继续写入项目本地 `.codex\`
+
+### 3. 对比了以下相似实现
+
+- `enhanced_visualizations.py:188-240`：保留原卡片式表达，只把底部标签宽度收回卡片内部
+- `enhanced_visualizations.py:242-290`：保留瀑布图主结构，只下调说明框并放宽顶部留白
+- `paper_mainline_visualizations.py` 对应主线图：借鉴其“更少外置元素、更克制标题层级”的布局策略
+
+### 4. 未重复造轮子的证明
+
+- 已检查 `enhanced_visualizations.py` 与 `paper_mainline_visualizations.py`，确认问题来自现有布局参数和导出边界，而不是缺失绘图能力
+- 本轮没有引入新绘图库、没有创建替代脚本、没有手工编辑成品图像
+
+### 5. 本地验证结果
+
+- 执行：`$env:PYTHONIOENCODING='utf-8'; python D:\dongbei3sheng\enhanced_visualizations.py`
+- 结果：脚本完整生成 20 张增强版图，`fig03`、`fig04`、`fig14` 已复核通过
+- 备注：Windows 默认 `gbk` 控制台下，原脚本的 `✓` 打印会触发 `UnicodeEncodeError`；设置 `PYTHONIOENCODING='utf-8'` 后不影响本地自动验证
+## 决策记录 - 增强图布局修复（第二轮）
+
+时间：2026-05-01 20:34:11
+
+1. 根据用户第二轮反馈，将修复范围扩展到 `fig01`、`fig04`、`fig05`、`fig06`、`fig07`、`fig10`、`fig13`、`fig17`、`fig20`。
+2. 本轮优先处理“标题/图例/图注与图元竞争同一块上边距”的共性问题，策略是增加顶部留白、把图例提升为 `figure` 级元素，或将说明框迁移到图内空白区。
+3. `fig04` 的中间两段增量因为数值太小，在全局坐标下不具备可见瀑布形态，因此补充了增量放大视窗，而不是篡改真实数值高度。
+
+## 编码后声明 - 增强图布局修复（第二轮）
+
+时间：2026-05-01 20:34:11
+
+### 1. 新增修复点
+
+- `fig01_total_demand_heatmap.png`：将时间轴标签移到底部柱图，避免与“时总量”数值重叠
+- `fig04_q1_waterfall.png`：加入增量放大视窗，明确显示“取整”“补差”的瀑布细节
+- `fig05_q1_group_comparison.png`：将图例提升为 `figure` 级并置于标题上方
+- `fig06_maxflow_topology.png`：扩大画布和坐标边界，将底部图注改为 `figure` 级文本，消除裁切
+- `fig07_q2_daily_staffing.png`：信息框下移并将公式改为 `ceil(...)` 文本，避免渲染与遮挡
+- `fig10_final_worker_comparison.png`：分离累计节约说明与箭头区域
+- `fig13_alns_convergence_temperature.png`：最终值注释移出曲线并加白底框
+- `fig17_three_question_radar.png`：继续上提标题并压缩方向标签字号
+- `fig20_sensitivity_scenario_comparison.png`：图例提升为 `figure` 级并置于标题上方
+
+### 2. 本地验证
+
+- 再次执行：`$env:PYTHONIOENCODING='utf-8'; python D:\dongbei3sheng\enhanced_visualizations.py`
+- 结果：20 张增强图全部重新生成成功
+- 复核：上述 9 张图均完成多模态检查，未再发现用户点名的重叠位置
