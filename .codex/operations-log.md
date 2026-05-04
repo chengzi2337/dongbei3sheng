@@ -363,3 +363,59 @@
 2. 补位模型不采用 `64*N_sb` 粗略容量扣减，而是按天求解真实合法模式补位 MILP。
 3. 为控制默认 200 次 Monte Carlo 的总耗时，采用“按天 MILP + 跨天 DP”的精确分解；该分解与用户给出的聚合模型等价，因为跨天唯一耦合是总待命工作日上限 `8*N_sb`。
 4. 现有 `build_workday_flow` 只支持“每人恰好工作 8 天”，本次将新增“每人最多工作 8 天”的最大流可行性验证函数，并在每个样本、每个 `N_sb` 结果上调用。
+
+## 编码中监控 - 弹性待命池UDR仿真
+
+时间：2026-05-04 21:40:00
+
+□ 是否使用了摘要中列出的可复用组件？
+✅ 是：已复用 `read_demand`、`build_shift_pairs`、`build_problem3_patterns`、`coverage_from_assignments`、`metrics_for_assignments`、`pattern_label`
+
+□ 命名是否符合项目约定？
+✅ 是：新增脚本使用英文蛇形命名；输出表头、日志与论文摘要使用简体中文
+
+□ 代码风格是否一致？
+✅ 是：继续采用 `numpy/pandas/scipy.optimize.milp`、稀疏矩阵和显式可行性校验；可视化输出仍写入 `visualizations/mainline`
+
+## 编码后声明 - 弹性待命池UDR仿真
+
+时间：2026-05-04 22:02:39
+
+### 1. 复用了以下既有组件
+
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::read_demand`：读取附件1需求矩阵
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::build_shift_pairs`：生成同组/跨组双 4 小时班次
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::build_problem3_patterns`：生成问题三 370 个合法模式
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::coverage_from_assignments`：校验基准排班和缺勤后的覆盖
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::metrics_for_assignments`：验证重建的 400 人基准排班无缺口
+- `D:\dongbei3sheng\independent_advanced_staff_scheduling.py::pattern_label`：将 `Q3_ALNS_WorkerSchedule` 反解成模式编号
+- `D:\dongbei3sheng\.codex\paper_sensitivity_analysis.py` 的缺勤建模口径：复用 `20260501` 随机种子体系与“工人-日期独立缺勤”定义
+- `D:\dongbei3sheng\paper_mainline_visualizations.py` 的输出约定：图像写入 `visualizations/mainline`
+
+### 2. 遵循了以下项目约定
+
+- 命名约定：脚本文件为 `standby_pool_udr_simulation.py`，内部函数使用英文蛇形命名
+- 代码风格：未引入新求解器，继续使用 SciPy MILP 与显式约束矩阵
+- 文件组织：脚本与表格/JSON/Markdown 结果写入项目本地 `.codex/`，图片写入 `visualizations/mainline/`
+
+### 3. 对比了以下相似实现
+
+- `independent_advanced_staff_scheduling.py:1031-1069`：沿用问题三“日层 MILP + 全期工作日验证”的主结构，但把全期补位改写为待命池仿真
+- `advanced_staff_scheduling_methods.py:148-224`：沿用最大流校验思想，但新增“最多 8 天”版本以适配待命人员可不满勤的约束
+- `.codex/paper_sensitivity_analysis.py:266-281`：沿用缺勤样本生成与 UDR 指标定义，但新增真实补位求解，而不是停留在缺勤后缺口统计
+- `paper_mainline_visualizations.py:21-85`：沿用中文字体与主线图输出目录约定
+
+### 4. 未重复造轮子的证明
+
+- 已检查问题三现有求解器、敏感性脚本和可视化脚本，确认仓库中不存在“基于既有 400 人排班的待命池真实补位仿真”
+- 新增的 `validate_standby_assignment` 是对现有 `build_workday_flow` 的必要补全，而不是并行替代实现
+
+### 5. 本地验证结果
+
+- 冒烟运行：`$env:PYTHONIOENCODING='utf-8'; python D:\dongbei3sheng\.codex\standby_pool_udr_simulation.py --runs 50 --max-standby 30`
+  - 结果：成功生成 CSV / JSON / Markdown / PNG
+  - 摘要：1% 场景 `mean_UDR=0` 的最小 `N_sb=10`；3% 场景 `mean_UDR=0` 的最小 `N_sb=19`；5% 场景在搜索范围内未达到 0
+- 正式运行：`$env:PYTHONIOENCODING='utf-8'; python D:\dongbei3sheng\.codex\standby_pool_udr_simulation.py --runs 200 --max-standby 30`
+  - 结果：成功覆盖正式结果文件
+  - 摘要：总需求 `17682`，基准问题三人数 `400`；1% 场景 `mean_UDR <= 1%` 的最小 `N_sb=0`、`mean_UDR=0` 的最小 `N_sb=10`；3% 场景对应 `4` 和 `22`；5% 场景对应 `11` 和“未在搜索范围内达到”
+  - 运行时长：约 `436.716` 秒
