@@ -338,3 +338,28 @@
 - 再次执行：`$env:PYTHONIOENCODING='utf-8'; python D:\dongbei3sheng\enhanced_visualizations.py`
 - 结果：20 张增强图全部重新生成成功
 - 复核：上述 9 张图均完成多模态检查，未再发现用户点名的重叠位置
+## 编码前检查 - 弹性待命池UDR仿真
+
+时间：2026-05-04 21:25:36
+
+□ 已查阅上下文摘要文件：`.codex/context-summary-弹性待命池UDR仿真.md`
+□ 将使用以下可复用组件：
+- `independent_advanced_staff_scheduling.py::read_demand`：读取附件需求张量
+- `independent_advanced_staff_scheduling.py::build_shift_pairs`：构造问题三日内双段班次
+- `independent_advanced_staff_scheduling.py::build_problem3_patterns`：构造 370 个合法服务模式
+- `independent_advanced_staff_scheduling.py::coverage_from_assignments`：从基准排班恢复覆盖矩阵
+- `independent_advanced_staff_scheduling.py::metrics_for_assignments`：校验基准排班缺口与人数
+- `independent_advanced_staff_scheduling.py::pattern_label`：将工作表中的中文模式文本映射回模式编号
+- `.codex/paper_sensitivity_analysis.py` 中的缺勤仿真口径：复用随机种子、Bernoulli 缺勤定义和缺口指标定义
+□ 将遵循命名约定：Python 代码使用英文蛇形命名；文档、日志、图题和表头使用简体中文
+□ 将遵循代码风格：继续使用 `numpy/pandas/scipy.milp`、稀疏矩阵与显式校验断言，不新增外部求解器
+□ 确认不重复造轮子，证明：已检查 `independent_advanced_staff_scheduling.py`、`advanced_staff_scheduling_methods.py`、`.codex/paper_sensitivity_analysis.py`、`paper_mainline_visualizations.py`，现有代码缺少“待命池真实补位仿真”和“至多8天的待命最大流验证”，因此本次新增脚本与小型验证函数是必要增量
+
+## 决策记录 - 弹性待命池UDR仿真
+
+时间：2026-05-04 21:25:36
+
+1. 基准方案优先读取既有 `Q3_ALNS_WorkerSchedule` / `Q3_WorkerSchedule` 工作表，不重跑 ALNS，避免与论文主线 400 人方案产生漂移。
+2. 补位模型不采用 `64*N_sb` 粗略容量扣减，而是按天求解真实合法模式补位 MILP。
+3. 为控制默认 200 次 Monte Carlo 的总耗时，采用“按天 MILP + 跨天 DP”的精确分解；该分解与用户给出的聚合模型等价，因为跨天唯一耦合是总待命工作日上限 `8*N_sb`。
+4. 现有 `build_workday_flow` 只支持“每人恰好工作 8 天”，本次将新增“每人最多工作 8 天”的最大流可行性验证函数，并在每个样本、每个 `N_sb` 结果上调用。
